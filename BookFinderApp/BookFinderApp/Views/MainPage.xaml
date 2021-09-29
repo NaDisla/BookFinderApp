@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookFinderApp.Views.MainPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="DarkGoldenrod"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0">
+                <Label Text="Logo"
+                       TextColor="White"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+            </Frame>
+            <Label Text="Encuentra cualquier libro"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,30,0,0"
+                   FontSize="20"
+                   FontAttributes="Bold"/>
+            <StackLayout Orientation="Horizontal"
+                         Margin="0,20,0,0"
+                         HorizontalOptions="Center">
+                <Entry Placeholder="Título del libro"
+                   Keyboard="Text"
+                       WidthRequest="290"
+                       x:Name="txtTitleBook"/>
+                <Button BackgroundColor="DarkCyan"
+                    Text="Buscar"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                        CornerRadius="20"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
