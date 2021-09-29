@@ -24,15 +24,24 @@
             <StackLayout Orientation="Horizontal"
                          Margin="0,20,0,0"
                          HorizontalOptions="Center">
-                <Entry Placeholder="Título del libro"
+                <Frame BackgroundColor="LightCyan"
+                       CornerRadius="20"
+                       BorderColor="DarkCyan"
+                       HeightRequest="20"
+                       Padding="0">
+                    <Entry Placeholder="Título del libro"
                    Keyboard="Text"
                        WidthRequest="290"
-                       x:Name="txtTitleBook"/>
+                       x:Name="txtTitleBook"
+                           Margin="15,0,0,0"/>
+                </Frame>
+                
                 <Button BackgroundColor="DarkCyan"
                     Text="Buscar"
                     FontAttributes="Bold"
                     TextColor="White"
-                        CornerRadius="20"/>
+                        CornerRadius="20"
+                        FontSize="18"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
