@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookFinderApp.Views.MainPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#9dbabd">
             <Frame BackgroundColor="DarkGoldenrod"
                    HeightRequest="60"
                    WidthRequest="60"
@@ -30,19 +30,60 @@
                        HeightRequest="20"
                        Padding="0">
                     <Entry Placeholder="Título del libro"
-                   Keyboard="Text"
-                       WidthRequest="290"
-                       x:Name="txtTitleBook"
+                           Keyboard="Text"
+                           WidthRequest="290"
+                           x:Name="txtTitleBook"
                            Margin="15,0,0,0"/>
                 </Frame>
-                
                 <Button BackgroundColor="DarkCyan"
-                    Text="Buscar"
-                    FontAttributes="Bold"
-                    TextColor="White"
+                        Text="Buscar"
+                        x:Name="btnSearchBook"
+                        Clicked="btnSearchBook_Clicked"
+                        FontAttributes="Bold"
+                        TextColor="White"
                         CornerRadius="20"
                         FontSize="18"/>
             </StackLayout>
+            <Label Text="Resultados:"
+                   x:Name="lblResults"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   Margin="10"/>
+            <Frame BackgroundColor="White"
+                   CornerRadius="20"
+                   Margin="10,0,10,10">
+                <ListView x:Name="lvwBooks"
+                          RowHeight="100"
+                          SeparatorVisibility="None"
+                          SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BackgroundColor="LightCyan"
+                                       CornerRadius="20"
+                                       BorderColor="DarkCyan"
+                                       Padding="0"
+                                       Margin="0,0,0,10">
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="20">
+                                        <Frame BackgroundColor="Beige"
+                                               WidthRequest="20"
+                                               HeightRequest="20"
+                                               VerticalOptions="Center"
+                                               Margin="20,0,0,0"/>
+                                        <StackLayout VerticalOptions="Center">
+                                            <Label Text="{Binding Title}"
+                                                   FontAttributes="Bold"/>
+                                            <Label Text="{Binding Author}"/>
+                                            <Label Text="{Binding PublishedDate}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

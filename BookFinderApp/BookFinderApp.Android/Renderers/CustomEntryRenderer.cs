@@ -25,7 +25,6 @@ namespace BookFinderApp.Droid.Renderers
         {
             base.OnElementChanged(e);
             Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
-            //if (Control != null) { Control.SetBackgroundColor(Android.Graphics.Color.Transparent); }
         }
     }
 }
