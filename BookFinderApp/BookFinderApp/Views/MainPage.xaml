@@ -48,10 +48,13 @@
                    x:Name="lblResults"
                    FontAttributes="Bold"
                    FontSize="18"
-                   Margin="10"/>
+                   Margin="10"
+                   IsVisible="False"/>
             <Frame BackgroundColor="White"
                    CornerRadius="20"
-                   Margin="10,0,10,10">
+                   Margin="10,0,10,10"
+                   IsVisible="False"
+                   x:Name="booksFrame">
                 <ListView x:Name="lvwBooks"
                           RowHeight="100"
                           SeparatorVisibility="None"

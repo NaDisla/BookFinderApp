@@ -31,6 +31,8 @@ namespace BookFinderApp.Views
             {
                 ObservableCollection<Book> getBooks = new ObservableCollection<Book>(objBook.GenerateBooks());
                 lvwBooks.ItemsSource = getBooks;
+                lblResults.IsVisible = true;
+                booksFrame.IsVisible = true;
             }
         }
     }
