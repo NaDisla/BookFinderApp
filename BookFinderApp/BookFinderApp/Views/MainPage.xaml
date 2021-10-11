@@ -54,7 +54,8 @@
                    CornerRadius="20"
                    Margin="10,0,10,10"
                    IsVisible="False"
-                   x:Name="booksFrame">
+                   x:Name="booksFrame"
+                   VerticalOptions="FillAndExpand">
                 <ListView x:Name="lvwBooks"
                           RowHeight="100"
                           SeparatorVisibility="None"
@@ -69,16 +70,16 @@
                                        Margin="0,0,0,10">
                                     <StackLayout Orientation="Horizontal"
                                                  Spacing="20">
-                                        <Frame BackgroundColor="Beige"
+                                        <Frame BackgroundColor="DarkCyan"
                                                WidthRequest="20"
                                                HeightRequest="20"
                                                VerticalOptions="Center"
-                                               Margin="20,0,0,0"/>
+                                               Margin="20,0,0,0" />
                                         <StackLayout VerticalOptions="Center">
                                             <Label Text="{Binding Title}"
                                                    FontAttributes="Bold"/>
                                             <Label Text="{Binding Author}"/>
-                                            <Label Text="{Binding PublishedDate}"/>
+                                            <Label Text="{Binding Date}"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>

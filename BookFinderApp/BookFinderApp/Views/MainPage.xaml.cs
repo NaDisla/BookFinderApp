@@ -2,10 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,19 +16,28 @@ namespace BookFinderApp.Views
             InitializeComponent();
         }
 
-        private void btnSearchBook_Clicked(object sender, EventArgs e)
+        private async void btnSearchBook_Clicked(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txtTitleBook.Text))
+            if (string.IsNullOrEmpty(txtTitleBook.Text))
             {
                 txtTitleBook.Placeholder = "Debe ingresar un título";
                 txtTitleBook.PlaceholderColor = Color.Red;
             }
             else
             {
-                ObservableCollection<Book> getBooks = new ObservableCollection<Book>(objBook.GenerateBooks());
-                lvwBooks.ItemsSource = getBooks;
-                lblResults.IsVisible = true;
-                booksFrame.IsVisible = true;
+                List<Book> getAllBooks = await objBook.GenerateBooks();
+                List<Book> getFilteredBooks = getAllBooks.FindAll(x => x.Title.Contains(txtTitleBook.Text));
+                if(getFilteredBooks.Count == 0)
+                {
+                    await DisplayAlert("Libro no encontrado.","No se ha encontrado el libro indicado.","OK");
+                }
+                else
+                {
+                    ObservableCollection<Book> finalBooks = new ObservableCollection<Book>(getFilteredBooks);
+                    lvwBooks.ItemsSource = finalBooks;
+                    lblResults.IsVisible = true;
+                    booksFrame.IsVisible = true;
+                }
             }
         }
     }

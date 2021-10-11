@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace BookFinderApp.Models
 {
@@ -6,19 +10,21 @@ namespace BookFinderApp.Models
     {
         public string Title { get; set; }
         public string Author { get; set; }
-        public string PublishedDate  { get; set; }
+        public DateTime PublishedDate  { get; set; }
+        public string Date { get; set; }
         public List<Book> ListBooks { get; set; }
-        public List<Book> GenerateBooks()
+
+        HttpClient client = new HttpClient();
+        const string urlApi = "https://api-book-finder.conveyor.cloud/api/books";
+        public async Task<List<Book>> GenerateBooks()
         {
-            ListBooks = new List<Book>() {
-            new Book(){Title = "50 Sombras de Grey", Author = "Los Grey", PublishedDate = "01/05/2000"},
-            new Book(){Title = "Once Minutos", Author = "Paulo Coelho", PublishedDate = "21/03/2010"},
-            new Book(){Title = "Cien Años de Soledad", Author = "Gabriel García Márquez", PublishedDate = "20/07/1995"},
-            new Book(){Title = "Amando a Pablo, odiando a Escobar", Author = "Virginia Vallejo", PublishedDate = "15/10/2011"},
-            new Book(){Title = "Hay un país en el mundo", Author = "Pedro Mir", PublishedDate = "08/04/2016"},
-            new Book(){Title = "El Cartel de los Sapos", Author = "Robert Godoy", PublishedDate = "09/05/1990"},
-            new Book(){Title = "Los estudiantes de JR", Author = "José Romero", PublishedDate = "20/12/2000"}
-            };
+            string jsonString = await client.GetStringAsync(urlApi);
+            var jsonDeserialize = JsonConvert.DeserializeObject<List<Book>>(jsonString);
+            foreach (var item in jsonDeserialize)
+            {
+                item.Date = item.PublishedDate.ToShortDateString();
+            }
+            ListBooks = new List<Book>(jsonDeserialize);
             return ListBooks;
         }
     }
